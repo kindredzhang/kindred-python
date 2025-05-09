@@ -18,9 +18,10 @@ def get_imports_from_content(content: str) -> set:
     imports = set()
     
     # 基础导入
+    imports.add("import uuid")
     imports.add("from datetime import datetime")
     imports.add("from typing import Optional, List")
-    imports.add("from sqlalchemy import Double, Index, PrimaryKeyConstraint, Column, Integer, String, Float, DateTime, Boolean, Text, ARRAY, BigInteger, Identity, text")
+    imports.add("from sqlalchemy import Uuid, Double, Index, PrimaryKeyConstraint, Column, Integer, String, Float, DateTime, Boolean, Text, ARRAY, BigInteger, Identity, text")
     imports.add("from sqlalchemy.orm import Mapped, mapped_column")
     imports.add("from app.models.base import Base")
     

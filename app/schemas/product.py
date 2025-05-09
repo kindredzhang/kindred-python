@@ -1,6 +1,10 @@
+import uuid
 from typing import Optional
+
 from pydantic import Field
+
 from app.schemas.base import BaseSchema
+
 
 class ProductBase(BaseSchema):
     """Base schema for product data."""
@@ -20,10 +24,9 @@ class ProductUpdate(ProductBase):
 
 class ProductInDB(ProductBase):
     """Schema for product data as stored in database."""
-    id: int = Field(..., description="Product ID")
+    id: uuid.UUID = Field(..., description="Product ID")
 
-    class Config:
-        from_attributes = True
+    model_config = {"from_attributes": True}
 
 class ProductResponse(ProductInDB):
     """Schema for product response data."""

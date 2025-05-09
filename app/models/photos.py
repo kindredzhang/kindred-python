@@ -1,9 +1,10 @@
 from app.models.base import Base
 from datetime import datetime
-from sqlalchemy import Double, Index, PrimaryKeyConstraint, Column, Integer, String, Float, DateTime, Boolean, Text, ARRAY, BigInteger, Identity, text
+from sqlalchemy import Uuid, Double, Index, PrimaryKeyConstraint, Column, Integer, String, Float, DateTime, Boolean, Text, ARRAY, BigInteger, Identity, text
 from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.orm import Mapped, mapped_column
 from typing import Optional, List
+import uuid
 
 class Photos(Base):
     __tablename__ = 'photos'

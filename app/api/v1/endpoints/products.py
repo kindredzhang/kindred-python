@@ -1,16 +1,14 @@
 # app/api/v1/endpoints/products.py
+import uuid
+from typing import List
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from typing import List
 
 from app.database import get_db
 from app.repositories.product_repository import ProductRepository
-from app.schemas.product import (
-    ProductCreate,
-    ProductUpdate,
-    ProductResponse,
-    ProductList
-)
+from app.schemas.product import (ProductCreate, ProductList, ProductResponse,
+                                 ProductUpdate)
 
 # 创建一个 API 路由器实例
 # 对比 Spring Boot: @RequestMapping 在 Controller 类上
@@ -53,7 +51,7 @@ def read_products(
 # 对比 Spring Boot: @GetMapping("/products/{product_id}") 方法
 @router.get("/{product_id}", response_model=ProductResponse)
 def read_product(
-    product_id: int,
+    product_id: str,
     db: Session = Depends(get_db)
 ):
     """Get a product by ID."""
@@ -66,7 +64,7 @@ def read_product(
 # 更新商品 API (PUT)
 @router.put("/{product_id}", response_model=ProductResponse)
 def update_product(
-    product_id: int,
+    product_id: str,
     product: ProductUpdate,
     db: Session = Depends(get_db)
 ):
@@ -80,7 +78,7 @@ def update_product(
 # 删除商品 API
 @router.delete("/{product_id}", response_model=ProductResponse)
 def delete_product(
-    product_id: int,
+    product_id: str,
     db: Session = Depends(get_db)
 ):
     """Delete a product."""
